@@ -2,6 +2,8 @@ package com.example.Kekeo.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,7 +51,7 @@ public class RegisterActivity extends Activity{
 
                     @Override
                     public void onError(String s) {
-
+                        Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -58,7 +60,40 @@ public class RegisterActivity extends Activity{
 
     private void showcheckcode() {
         EditText text = new EditText(RegisterActivity.this);
+        text.setTextColor(Color.parseColor("#000000"));
+        text.setWidth(1000);
+        new AlertDialog.Builder(RegisterActivity.this)
+                .setTitle("输入验证码")
+                .setView(text)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        params=new RequestParams();
+                        service=new UserService();
+                        params.put("PassWord",pass);
+                        params.put("PassWord",text.getText().toString()+"");
+                        service.post(getApplicationContext(), "", params, new Listener() {
+                            @Override
+                            public void onSuccess(String s) {
+                                if(s.equals("1")){
+                                    /**
+                                     * 注册成功
+                                     */
+                                }else{
+                                    /**
+                                     * 注册失败
+                                     */
+                                }
+                            }
 
+                            @Override
+                            public void onError(String s) {
+                                Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton("取消",null).show();
     }
 
     public void init(){
