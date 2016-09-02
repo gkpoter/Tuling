@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.baidu.tts_2.2.8.20160824_83a9ca4_release">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/com.baidu.tts_2.2.8.20160824_83a9ca4_release.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/galaxy-v2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
