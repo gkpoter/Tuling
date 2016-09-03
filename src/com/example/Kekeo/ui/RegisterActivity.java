@@ -24,7 +24,7 @@ public class RegisterActivity extends Activity{
     private Button button;
     private RequestParams params;
     private UserService service;
-    private String pass;
+    private String pass,phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,8 @@ public class RegisterActivity extends Activity{
                 service=new UserService();
                 params.put("UserPhone",userPhone.getText().toString()+"");
                 pass=password.getText().toString();
-                service.post(getApplicationContext(), "", params, new Listener() {
+                phone=userPhone.getText().toString()+"";
+                service.post(getApplicationContext(), "register", params, new Listener() {
                     @Override
                     public void onSuccess(String s) {
                         if(s.equals("1")){
@@ -71,7 +72,8 @@ public class RegisterActivity extends Activity{
                         params=new RequestParams();
                         service=new UserService();
                         params.put("PassWord",pass);
-                        params.put("PassWord",text.getText().toString()+"");
+                        params.put("UserPhone",phone);
+                        params.put("CheckCode",text.getText().toString()+"");
                         service.post(getApplicationContext(), "", params, new Listener() {
                             @Override
                             public void onSuccess(String s) {
