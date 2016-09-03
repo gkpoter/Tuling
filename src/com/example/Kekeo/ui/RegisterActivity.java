@@ -3,6 +3,7 @@ package com.example.Kekeo.ui;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.Kekeo.Listener.Listener;
+import com.example.Kekeo.MyActivity;
 import com.example.Kekeo.R;
 import com.example.Kekeo.Service.UserService;
 import com.loopj.android.http.RequestParams;
@@ -38,9 +40,9 @@ public class RegisterActivity extends Activity{
                 params=new RequestParams();
                 service=new UserService();
                 params.put("UserPhone",userPhone.getText().toString()+"");
-                pass=password.getText().toString();
+                pass=password.getText().toString()+"";
                 phone=userPhone.getText().toString()+"";
-                service.post(getApplicationContext(), "register", params, new Listener() {
+                service.post(getApplicationContext(), "checkcode", params, new Listener() {
                     @Override
                     public void onSuccess(String s) {
                         if(s.equals("1")){
@@ -74,17 +76,13 @@ public class RegisterActivity extends Activity{
                         params.put("PassWord",pass);
                         params.put("UserPhone",phone);
                         params.put("CheckCode",text.getText().toString()+"");
-                        service.post(getApplicationContext(), "", params, new Listener() {
+                        service.post(getApplicationContext(), "register", params, new Listener() {
                             @Override
                             public void onSuccess(String s) {
                                 if(s.equals("1")){
-                                    /**
-                                     * 注册成功
-                                     */
+                                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                 }else{
-                                    /**
-                                     * 注册失败
-                                     */
+                                    Toast.makeText(RegisterActivity.this, "RegistError", Toast.LENGTH_SHORT).show();
                                 }
                             }
 

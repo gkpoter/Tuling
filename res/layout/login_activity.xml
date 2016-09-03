@@ -19,7 +19,7 @@
                   android:layout_height="match_parent"/>
         <EditText android:layout_width="match_parent"
                   android:phoneNumber="true"
-                  android:id="@+id/userPhone"
+                  android:id="@+id/l_userPhone"
                   android:layout_margin="5dp"
                   android:textColor="#818181"
                   android:textSize="25dp"
@@ -39,7 +39,7 @@
                   android:layout_height="match_parent"/>
         <EditText android:layout_width="match_parent"
                   android:textColor="#818181"
-                  android:id="@+id/password"
+                  android:id="@+id/l_password"
                   android:layout_margin="5dp"
                   android:background="#c1c1c1"
                   android:textSize="25dp"
@@ -49,7 +49,13 @@
 
     <Button android:layout_width="match_parent"
             android:text="注册"
-            android:id="@+id/register_btn"
+            android:id="@+id/l_register_btn"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_height="80dp"/>
+    <Button android:layout_width="match_parent"
+            android:text="Sign in"
+            android:id="@+id/l_login"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:layout_height="80dp"/>

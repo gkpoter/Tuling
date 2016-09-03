@@ -9,6 +9,15 @@ public class UserModel {
     private Integer state;
     private String msg;
     private String CheckCode;
+    private String SecretKey;
+
+    public String getSecretKey() {
+        return SecretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        SecretKey = secretKey;
+    }
 
     public String getCheckCode() {
         return CheckCode;

@@ -2,6 +2,7 @@ package com.example.Kekeo;
 
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -109,8 +110,13 @@ public class MyActivity extends Activity implements SpeechSynthesizerListener,Re
     }
 
     public void pushContext(String text){
+        SharedPreferences sharedPreferences=getSharedPreferences("user", Context.MODE_PRIVATE);
         params=new RequestParams();
         params.put("Context",text);
+        params.put("SecretKey",sharedPreferences.getString("SecretKey","")+"");
+        params.put("UserPhone",sharedPreferences.getString("UserPhone",""));
+        Log.i("information",sharedPreferences.getString("SecretKey",""));
+        Log.i("information",sharedPreferences.getString("UserPhone",""));
         service=new TulingService();
         service.post(getApplicationContext(), "test", params, new Listener() {
             @Override
